@@ -4,7 +4,7 @@
 
 Increment selection with multiple cursors for VSCode  
 
-![screenshot](https://github.com/albymor/Increment-Selection/blob/master/images/demo.gif)
+![screenshot](images/demo.gif)
 
 ## Usage
 

@@ -2,6 +2,7 @@
     "name": "increment-selection",
     "displayName": "Increment Selection",
     "description": "Increment selection with multiple cursors",
+    "icon": "icon.png",
     "version": "0.0.1",
     "publisher": "albymor",
     "engines": {

@@ -8,8 +8,26 @@
     "engines": {
         "vscode": "^1.20.0"
     },
+    "bugs": {
+        "url": "https://github.com/albymor/Increment-Selection/issues",
+        "email": "alberto.morato90@gmail.com"
+    },
+    "homepage": "https://github.com/albymor/Increment-Selection",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/albymor/Increment-Selection.git"
+    },
     "categories": [
+        "Formatters",
         "Other"
+    ],
+    "keywords": [
+        "increment",
+        "decrement",
+        "incrementor",
+        "format",
+        "numbers",
+        "value"
     ],
     "activationEvents": [
         "onCommand:extension.incrementSelection"

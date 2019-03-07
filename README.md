@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/albymor/Increment-Selection/blob/master/LICENSE)
 
-Increment selection with multiple cursors for VSCode  
+Increment or decrement selection with multiple cursors for VSCode  
 
 ![screenshot](images/demo.gif)
 

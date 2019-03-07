@@ -19,6 +19,10 @@ Mac:
 <kbd>cmd</kbd> + <kbd>alt</kbd> + <kbd>I</kbd>  
 <kbd>cmd</kbd> + <kbd>shift</kbd> + <kbd>P</kbd> => Increment Selection  
 
+## Contributors
+| [albymor](https://github.com/albymor "Follow @albymor on Github") | [tom-sherman](https://github.com/tom-sherman "Follow @tom-sherman on Github") |
+|---|---|
+| [Alberto Morato](https://albymor.github.io/) | [Tom Sherman](https://tom-sherman.github.io/) |
 
 ## LICENSE
 [LICENSE](./LICENSE)

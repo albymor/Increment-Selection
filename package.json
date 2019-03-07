@@ -30,7 +30,8 @@
         "value"
     ],
     "activationEvents": [
-        "onCommand:extension.incrementSelection"
+        "onCommand:extension.incrementSelection",
+        "onCommand:extension.decrementSelection"
     ],
     "main": "./extension",
     "contributes": {
@@ -38,6 +39,10 @@
             {
                 "command": "extension.incrementSelection",
                 "title": "Increment Selection"
+            },
+            {
+                "command": "extension.decrementSelection",
+                "title": "Decrement Selection"
             }
         ],
         "keybindings": [
@@ -55,9 +60,9 @@
     },
     "devDependencies": {
         "@types/mocha": "^2.2.42",
-        "@types/node": "^7.0.43",
-        "eslint": "^4.11.0",
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.21"
+        "@types/node": "^10.12.21",
+        "eslint": "^5.13.0",
+        "typescript": "^3.3.1",
+        "vscode": "^1.1.28"
     }
 }

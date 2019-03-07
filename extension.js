@@ -4,7 +4,7 @@ const vscode = require('vscode');
 
 
 /**
- * Support functions 
+ * Support functions
  * Modified version of https://stackoverflow.com/questions/12504042/what-is-a-method-that-can-be-used-to-increment-letters
  */
 function nextChar(c) {
@@ -58,9 +58,41 @@ function same(str, char) {
 
 function convertCase(c, isLowerCase){
     if (isLowerCase) {
-        c = c.toLowerCase();        
+        c = c.toLowerCase();
     }
     return c;
+}
+
+function doSelection (action) {
+    var editor = vscode.window.activeTextEditor;
+    if (!editor) {
+        return; // No open text editor
+    }
+
+    var selections = editor.selections;
+    var firstSelection = editor.document.getText(selections[0]);
+
+    // If it is a number
+    if (!isNaN(parseInt(firstSelection))){
+        firstSelection = parseInt(firstSelection);
+        editor.edit(function (edit) {
+            selections.forEach(function (selection) {
+                edit.replace(selection, String(
+                    action === 'increment'
+                        ? firstSelection++
+                        : firstSelection--
+                ));
+            })
+        });
+    }
+    else{ // if it is a char
+        editor.edit(function (edit) {
+            selections.forEach(function (selection) {
+                edit.replace(selection, String(firstSelection));
+                firstSelection = nextChar(firstSelection);
+            })
+        });
+    }
 }
 //---------------------------------------------------------------------------------------------
 
@@ -76,37 +108,15 @@ function activate(context) {
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand('extension.incrementSelection', function () {
-        // The code you place here will be executed every time your command is executed
-
-        var editor = vscode.window.activeTextEditor;
-        if (!editor) {
-            return; // No open text editor
-        }
-
-        var selections = editor.selections;
-        var firstSelection = editor.document.getText(selections[0]);
-
-        // If it is a number
-        if (!isNaN(parseInt(firstSelection))){
-            firstSelection = parseInt(firstSelection);
-            editor.edit(function (edit) {
-                selections.forEach(function (selection) {
-                    edit.replace(selection, String(firstSelection++));
-                })
-            });
-        }
-        else{ // if it is a char
-            editor.edit(function (edit) {
-                selections.forEach(function (selection) {
-                    edit.replace(selection, String(firstSelection));
-                    firstSelection = nextChar(firstSelection);
-                })
-            });
-        }
+    let incrementSelection = vscode.commands.registerCommand('extension.incrementSelection', function () {
+        doSelection('increment');
     });
 
-    context.subscriptions.push(disposable);
+    let decrementSelection = vscode.commands.registerCommand('extension.decrementSelection', function () {
+        doSelection('decrement');
+    });
+
+    context.subscriptions.push(incrementSelection, decrementSelection);
 }
 exports.activate = activate;
 

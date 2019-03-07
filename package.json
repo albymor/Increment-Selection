@@ -30,7 +30,8 @@
         "value"
     ],
     "activationEvents": [
-        "onCommand:extension.incrementSelection"
+        "onCommand:extension.incrementSelection",
+        "onCommand:extension.decrementSelection"
     ],
     "main": "./extension",
     "contributes": {
@@ -38,6 +39,10 @@
             {
                 "command": "extension.incrementSelection",
                 "title": "Increment Selection"
+            },
+            {
+                "command": "extension.decrementSelection",
+                "title": "Decrement Selection"
             }
         ],
         "keybindings": [

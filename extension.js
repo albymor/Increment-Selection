@@ -71,10 +71,16 @@ function doSelection (action) {
 
     var selections = editor.selections;
     var firstSelection = editor.document.getText(selections[0]);
+    console.log(firstSelection.length);
 
-    // If it is a number
-    if (!isNaN(parseInt(firstSelection))){
-        firstSelection = parseInt(firstSelection);
+    // If it is a number or nothing has been selected
+    if (!isNaN(parseInt(firstSelection)) || firstSelection.length == 0){
+        if(firstSelection.length == 0){
+            firstSelection = "0"
+        }
+        else{
+            firstSelection = parseInt(firstSelection);
+        }        
         editor.edit(function (edit) {
             selections.forEach(function (selection) {
                 edit.replace(selection, String(

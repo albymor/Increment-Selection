@@ -63,6 +63,34 @@ function convertCase(c, isLowerCase){
     return c;
 }
 
+function getPaddingLength(st) {
+	var counter = 0
+    for (var i = 0, b = st.length; i < b; i ++) {
+        if (st[i] !== '0') {
+            break;
+        }
+        counter++;
+    }
+
+    if (counter == st.length){
+    	counter--;
+    }
+
+    if(counter > 0){
+    	return st.length;
+    }
+    else{
+    	return 0;
+    } 
+}
+
+Number.prototype.pad = function(paddingLength) {
+    var sign = Math.sign(this) === -1 ? '-' : '';
+    var s = String(Math.abs(this));
+    while (s.length < paddingLength) {s = "0" + s;}
+    return sign + s;
+}
+
 function doSelection (action) {
     var editor = vscode.window.activeTextEditor;
     if (!editor) {
@@ -71,22 +99,25 @@ function doSelection (action) {
 
     var selections = editor.selections;
     var firstSelection = editor.document.getText(selections[0]);
-    console.log(firstSelection.length);
 
     // If it is a number or nothing has been selected
     if (!isNaN(parseInt(firstSelection)) || firstSelection.length == 0){
+
+        //default behaviour if no selection are made
         if(firstSelection.length == 0){
             firstSelection = "0"
         }
-        else{
-            firstSelection = parseInt(firstSelection);
-        }        
+
+        var paddingLength = getPaddingLength(firstSelection);
+
+        firstSelection = parseInt(firstSelection);        
+
         editor.edit(function (edit) {
             selections.forEach(function (selection) {
                 edit.replace(selection, String(
                     action === 'increment'
-                        ? firstSelection++
-                        : firstSelection--
+                        ? (firstSelection++).pad(paddingLength)
+                        : (firstSelection--).pad(paddingLength)
                 ));
             })
         });

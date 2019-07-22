@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "increment-selection" extension will be documented in this file.
 
+## [0.0.7] - 2019-07-22
+- Fix security vulnerabilities
+
 ## [0.0.6] - 2019-04-09
 - Added handling of leading zeros 
 

@@ -3,7 +3,7 @@
     "displayName": "Increment Selection",
     "description": "Increment selection with multiple cursors",
     "icon": "icon.png",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "publisher": "albymor",
     "engines": {
         "vscode": "^1.20.0"

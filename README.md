@@ -2,11 +2,16 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/albymor/Increment-Selection/blob/master/LICENSE)
 
-Increment or decrement selection with multiple cursors for VSCode  
+Increment, decrement or reverse selection with multiple cursors for VSCode  
 
 ![screenshot](images/demo.gif)
 
 ## Usage
+
+### Available Commands
+* Increment Selection
+* Decrement Selection
+* Reverse Selection
 
 ### Default Keymap
 

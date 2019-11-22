@@ -56,7 +56,7 @@ function same(str, char) {
     return true;
 }
 
-function convertCase(c, isLowerCase){
+function convertCase(c, isLowerCase) {
     if (isLowerCase) {
         c = c.toLowerCase();
     }
@@ -64,34 +64,34 @@ function convertCase(c, isLowerCase){
 }
 
 function getPaddingLength(st) {
-	var counter = 0
-    for (var i = 0, b = st.length; i < b; i ++) {
+    var counter = 0
+    for (var i = 0, b = st.length; i < b; i++) {
         if (st[i] !== '0') {
             break;
         }
         counter++;
     }
 
-    if (counter == st.length){
-    	counter--;
+    if (counter == st.length) {
+        counter--;
     }
 
-    if(counter > 0){
-    	return st.length;
+    if (counter > 0) {
+        return st.length;
     }
-    else{
-    	return 0;
-    } 
+    else {
+        return 0;
+    }
 }
 
-Number.prototype.pad = function(paddingLength) {
+Number.prototype.pad = function (paddingLength) {
     var sign = Math.sign(this) === -1 ? '-' : '';
     var s = String(Math.abs(this));
-    while (s.length < paddingLength) {s = "0" + s;}
+    while (s.length < paddingLength) { s = "0" + s; }
     return sign + s;
 }
 
-function doSelection (action) {
+function doSelection(action) {
     var editor = vscode.window.activeTextEditor;
     if (!editor) {
         return; // No open text editor
@@ -101,16 +101,16 @@ function doSelection (action) {
     var firstSelection = editor.document.getText(selections[0]);
 
     // If it is a number or nothing has been selected
-    if (!isNaN(parseInt(firstSelection)) || firstSelection.length == 0){
+    if (!isNaN(parseInt(firstSelection)) || firstSelection.length == 0) {
 
         //default behaviour if no selection are made
-        if(firstSelection.length == 0){
+        if (firstSelection.length == 0) {
             firstSelection = "0"
         }
 
         var paddingLength = getPaddingLength(firstSelection);
 
-        firstSelection = parseInt(firstSelection);        
+        firstSelection = parseInt(firstSelection);
 
         editor.edit(function (edit) {
             selections.forEach(function (selection) {
@@ -122,7 +122,7 @@ function doSelection (action) {
             })
         });
     }
-    else{ // if it is a char
+    else { // if it is a char
         editor.edit(function (edit) {
             selections.forEach(function (selection) {
                 edit.replace(selection, String(firstSelection));
@@ -131,6 +131,34 @@ function doSelection (action) {
         });
     }
 }
+
+function reverse(){
+    var editor = vscode.window.activeTextEditor;
+    if (!editor) {
+        return; // No open text editor
+    }
+
+    var content =[];
+    var selections = editor.selections;
+    selections.forEach(function (selection){
+        content.push(editor.document.getText(selection));
+    });
+
+    editor.selections.reverse()
+    selections = editor.selections;
+
+    const zip = (arr1, arr2) => arr1.map((k, i) => [k, arr2[i]]);
+
+    var pairs = zip(selections, content)
+
+    editor.edit(function (edit) {
+        pairs.forEach(function (pair) {
+            edit.replace(pair[0], pair[1]);
+        })
+    });
+}
+
+
 //---------------------------------------------------------------------------------------------
 
 
@@ -151,9 +179,14 @@ function activate(context) {
 
     let decrementSelection = vscode.commands.registerCommand('extension.decrementSelection', function () {
         doSelection('decrement');
+
     });
 
-    context.subscriptions.push(incrementSelection, decrementSelection);
+    let reverseSelection = vscode.commands.registerCommand('extension.reverseSelection', function () {
+        reverse();
+    });
+
+    context.subscriptions.push(incrementSelection, decrementSelection, reverseSelection);
 }
 exports.activate = activate;
 

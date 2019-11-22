@@ -3,7 +3,7 @@
     "displayName": "Increment Selection",
     "description": "Increment selection with multiple cursors",
     "icon": "icon.png",
-    "version": "0.0.8",
+    "version": "0.1.0",
     "publisher": "albymor",
     "engines": {
         "vscode": "^1.20.0"
@@ -31,7 +31,8 @@
     ],
     "activationEvents": [
         "onCommand:extension.incrementSelection",
-        "onCommand:extension.decrementSelection"
+        "onCommand:extension.decrementSelection",
+        "onCommand:extension.reverseSelection"
     ],
     "main": "./extension",
     "contributes": {
@@ -43,6 +44,10 @@
             {
                 "command": "extension.decrementSelection",
                 "title": "Decrement Selection"
+            },
+            {
+                "command": "extension.reverseSelection",
+                "title": "Reverse Selection"
             }
         ],
         "keybindings": [

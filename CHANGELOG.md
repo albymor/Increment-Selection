@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "increment-selection" extension will be documented in this file.
 
+## [0.1.0] - 2019-11-22
+- Added reverse selection
+
 ## [0.0.8] - 2019-07-22
 - Fix security vulnerabilities
 

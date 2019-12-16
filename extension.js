@@ -92,12 +92,17 @@ Number.prototype.pad = function (paddingLength) {
 }
 
 function doSelection(action) {
+    const config = vscode.workspace.getConfiguration('increment-selection');
+
     var editor = vscode.window.activeTextEditor;
     if (!editor) {
         return; // No open text editor
     }
 
     var selections = editor.selections;
+    if (config.topToBottom) {
+        selections.sort((a, b) => a.start.compareTo(b.start));
+    }
     var firstSelection = editor.document.getText(selections[0]);
 
     // If it is a number or nothing has been selected

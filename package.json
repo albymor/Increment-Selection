@@ -36,6 +36,16 @@
     ],
     "main": "./extension",
     "contributes": {
+        "configuration": {
+            "title": "increment-selection",
+            "properties": {
+                "increment-selection.topToBottom": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Increment selections from top to bottom, rather than from the selection creation order."
+                }
+            }
+        },
         "commands": [
             {
                 "command": "extension.incrementSelection",

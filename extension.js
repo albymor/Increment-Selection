@@ -84,11 +84,10 @@ function getPaddingLength(st) {
     }
 }
 
-Number.prototype.pad = function (paddingLength) {
-    var sign = Math.sign(this) === -1 ? '-' : '';
-    var s = String(Math.abs(this));
-    while (s.length < paddingLength) { s = "0" + s; }
-    return sign + s;
+function pad(number, paddingLength) {
+    var sign = Math.sign(number) === -1 ? '-' : '';
+    var s = String(Math.abs(number));
+    return sign + s.padStart(paddingLength, '0');
 }
 
 function doSelection(action) {
@@ -121,8 +120,8 @@ function doSelection(action) {
             selections.forEach(function (selection) {
                 edit.replace(selection, String(
                     action === 'increment'
-                        ? (firstSelection++).pad(paddingLength)
-                        : (firstSelection--).pad(paddingLength)
+                        ? pad(firstSelection++, paddingLength)
+                        : pad(firstSelection--, paddingLength)
                 ));
             })
         });
